@@ -2,26 +2,27 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8" />
+	<meta charset="UTF-8">
 	<!--
-	Copyright (C) 2025 Marco Antonio Arias Antolín - mail://marcoariasantolin@gmail.com
+	Copyright (C) 2025 Marco Antonio Arias Antolín
 
 	Licenses:	GPL  v3+ <http://www.gnu.org/licenses/>
 				AGPL v3+ <http://www.gnu.org/licenses/>
-	Author: Marco Antonio Arias Antolín.
+	Author: Marco Antonio Arias Antolín
+	e-mail: marcoariasantolin@gmail.com
 	Year: 2025
-	Description: TTF-WOFF2 compression and decompression.
-		Converts TTF fonts to WOFF2 (compression) and WOFF2 back to TTF (decompression).
-		WOFF2 offers a reduced file size for web use, maintaining glyph quality.
+	Description: TTF WOFF2 compress decompress
 	Usage:
-	- Compress
-	- Decompress
-	- Show information
+		compress TTF to WOFF2
+		decompress WOFF2 to TTF
+		show WOFF2 information
 	-->
 	<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNjQgNjQiCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQoJPHN0eWxlPg0KCQlwYXRoIHsNCgkJCWFuaW1hdGlvbjogd2lnZ2xlIDZzIGVhc2UtaW4tb3V0IGluZmluaXRlOw0KCQkJdHJhbnNmb3JtLW9yaWdpbjogNTAlIDEwMCU7DQoJCX0NCgkJQGtleWZyYW1lcyB3aWdnbGUgew0KCQkJMCUsIDg5JSB7IHRyYW5zZm9ybTogcm90YXRlWigwKTsgfQ0KCQkJOTAlIHsgdHJhbnNmb3JtOiByb3RhdGVaKC0xMGRlZyk7IH0NCgkJCTkyJSB7IHRyYW5zZm9ybTogcm90YXRlWig2ZGVnKTsgfQ0KCQkJOTQlIHsgdHJhbnNmb3JtOiByb3RhdGVaKC02ZGVnKTsgfQ0KCQkJOTYlIHsgdHJhbnNmb3JtOiByb3RhdGVaKDRkZWcpOyB9DQoJCQk5OCUgeyB0cmFuc2Zvcm06IHJvdGF0ZVooLTJkZWcpOyB9DQoJCQkxMDAlIHsgdHJhbnNmb3JtOiByb3RhdGVaKDApOyB9DQoJCX0NCgkJQG1lZGlhIChwcmVmZXJzLWNvbG9yLXNjaGVtZTogbGlnaHQpIHsNCgkJCXBhdGggeyBmaWxsOiAjMjEyNTI5OyB9DQoJCX0NCgk8L3N0eWxlPg0KCTxwYXRoIGZpbGw9IiNhZGI1YmQiIGQ9Im0wIDBoMTJsMjAgMzYgMjAtMzZoMTJ2NjRoLTEydi00MGwtMjAgMzYtMjAtMzZ2NDBoLTEyeiIvPg0KPC9zdmc+">
 	<title>mrkWoff2</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="Marco Antonio Arias Antolín">
-	<meta name="description" content="woff2 compress decompress">
+	<meta name="description" content="ttf woff2 compress decompress">
+	<meta name="keywords" content="ttf, woff2, compress, decompress">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/mrkWoff2.css">
 	<script type="module">
@@ -29,10 +30,12 @@
 		import { download } from './js/util/download.js';
 
 		const fileInput = document.getElementById('file-input');
-		const compressBtn = document.getElementById('compress-btn');
-		const decompressBtn = document.getElementById('decompress-btn');
-		const infoBtn = document.getElementById('info-btn');
-		const downloadBtn = document.getElementById('download-btn');
+		const btn = {
+			compress: document.getElementById('btn-compress'),
+			decompress: document.getElementById('btn-decompress'),
+			info: document.getElementById('btn-info'),
+			download: document.getElementById('btn-download')
+		};
 		let global = {
 			inputData: null,
 			outputData: null,
@@ -40,55 +43,48 @@
 			outputName: null
 		}
 
-		function splitNameExt(fileName) {
-			const lastDot = fileName.lastIndexOf(".");
-			return {
-				name: fileName.substring(0, lastDot),
-				ext: fileName.substring(lastDot + 1)
-			};
-		}
-
 		fileInput.addEventListener('change', async (e) => {
 			const file = e.target.files[0];
 			const arrayBuffer = await file.arrayBuffer();
 			global.inputData = new Uint8Array(arrayBuffer);
 
-			compressBtn.disabled = true;
-			decompressBtn.disabled = true;
-			infoBtn.disabled = true;
-			downloadBtn.disabled = true;
+			btn.compress.disabled = true;
+			btn.decompress.disabled = true;
+			btn.info.disabled = true;
+			btn.download.disabled = true;
 
-			const { name, ext } = splitNameExt(file.name);
-			global.inputName = name;
+			const lastDot = file.name.lastIndexOf(".");
+			global.inputName = file.name.substring(0, lastDot)
+			const ext = file.name.substring(lastDot + 1)
+
 			if (ext === 'ttf') {
-				compressBtn.disabled = false;
+				btn.compress.disabled = false;
 			} else if (ext === 'woff2') {
-				decompressBtn.disabled = false;
-				infoBtn.disabled = false;
+				btn.decompress.disabled = false;
+				btn.info.disabled = false;
 			}
 		});
 
-		compressBtn.addEventListener('click', async function () {
+		btn.compress.addEventListener('click', async function () {
 			global.outputData = await compressWoff2(global.inputData);
 			global.outputName = global.inputName + '.woff2';
-			compressBtn.disabled = true;
-			infoBtn.disabled = true;
-			downloadBtn.disabled = false;
+			btn.compress.disabled = true;
+			btn.download.disabled = false;
 		});
 
-		decompressBtn.addEventListener('click', async function () {
+		btn.decompress.addEventListener('click', async function () {
 			global.outputData = await decompressWoff2(global.inputData);
 			global.outputName = global.inputName + '.ttf';
-			decompressBtn.disabled = true;
-			downloadBtn.disabled = false;
+			btn.decompress.disabled = true;
+			btn.download.disabled = false;
 		});
 
-		infoBtn.addEventListener('click', async function () {
+		btn.info.addEventListener('click', async function () {
 			const info = await infoWoff2(global.inputData);
 			alert(info);
 		});
 
-		downloadBtn.addEventListener('click', async function () {
+		btn.download.addEventListener('click', async function () {
 			download(global.outputData, global.outputName);
 		});
 	</script>
@@ -100,20 +96,24 @@
 	</header>
 	<main>
 		<section>
-			<p>Easily convert between TTF and WOFF2 font formats.
-				<label id="readMoreLabel" for="readMoreInput" class="primary">❔</label>
-			</p>
+			<h2>TTF - WOFF2 convert</h2>
+			<label for="readMoreInput" class="primary">❔</label>
 			<input type="checkbox" id="readMoreInput">
 			<div id="readMoreDiv">
+				<p>WOFF2 offers a reduced file size for web use, maintaining glyph quality</p>
 				<p>Compress your TTF files to optimize your website</p>
 				<p>Decompress WOFF2 to get the original editable font.</p>
-				<pre><code>@font-face {
+				<figure>
+					<figcaption>CSS</figcaption>
+					<pre><code>@font-face {
     font-family: 'MyFont';
     src: url('my-font.woff2') format('woff2'),
          url('my-font.ttf')   format('truetype');
     font-weight: normal;
     font-style: normal;
-}</code></pre><label id="readMoreLabel" for="readMoreInput" class="primary">✖️</label>
+}</code></pre>
+				</figure>
+				<label for="readMoreInput" class="primary">✖️</label>
 			</div>
 		</section>
 		<section>
@@ -122,13 +122,13 @@
 		</section>
 		<section>
 			<h2>Operations</h2>
-			<button class="success" id="compress-btn" disabled>Compress</button>
-			<button class="success" id="decompress-btn" disabled>Decompress</button>
-			<button class="info" id="info-btn" disabled>Information</button>
+			<button class="success" id="btn-compress" disabled>Compress</button>
+			<button class="success" id="btn-decompress" disabled>Decompress</button>
+			<button class="info" id="btn-info" disabled>Information</button>
 		</section>
 		<section>
 			<h2>Download</h2>
-			<button class="primary" id="download-btn" disabled>Download</button>
+			<button class="primary" id="btn-download" disabled>Download</button>
 		</section>
 	</main>
 	<footer id="footer">

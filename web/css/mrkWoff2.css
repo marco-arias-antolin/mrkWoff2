@@ -26,18 +26,34 @@
 	justify-content: center;
 	position: absolute;
 	transform: scale(0);
-	transition: 1.2s;
+	transition: .6s;
+	will-change: transform, border-radius;
 	z-index: 1;
 }
 
 #readMoreInput:checked~#readMoreDiv {
-	transform: scale(1);
 	border-radius: 0;
+	transform: scale(1);
+}
+
+figure {
+	border: 2px solid var(--color);
+	border-radius: .6rem;
+}
+
+figcaption {
+	border-bottom: 2px solid var(--color);
+	padding: .6rem;
+}
+
+figure>pre {
+	border: none;
+	margin: 0;
 }
 
 input[type="file"] {
 	border: 2px solid var(--color);
-	border-radius: 6px;
+	border-radius: .6rem;
 	padding: .6rem;
 }
 
@@ -46,7 +62,7 @@ input[type="file"]::file-selector-button,
 button {
 	background: var(--color);
 	border: none;
-	border-radius: 6px;
+	border-radius: .6rem;
 	color: var(--bg);
 	cursor: pointer;
 	margin: .6rem;
@@ -55,7 +71,7 @@ button {
 
 *:disabled {
 	cursor: not-allowed;
-	opacity: 0.65;
+	opacity: 0.66;
 }
 
 .primary {

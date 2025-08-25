@@ -10,7 +10,7 @@
 extern "C" {
 
 /**
- * Compresses TTF font data to WOFF2 format
+ * Compress TTF font data to WOFF2 format
  * @param data Input TTF font data buffer
  * @param length Length of input data
  * @param out_len Output parameter for compressed data length

@@ -1,4 +1,4 @@
-# mrkWoff2
+# [mrkWoff2](https://marco-arias-antolin.github.io/mrkWoff2/web/mrkWoff2.html)
 
 TTF ↔ WOFF2 compression/decompression in your browser using WebAssembly.  
 All processing happens locally.
@@ -35,10 +35,6 @@ mrkWoff2/
 ├── cpp/
 │   └── mrk_woff2.cpp            # Core C++ module with WOFF2 operations
 ├── sh/
-│   ├── es/
-│   │   ├── 1_install_emsdk_es.sh
-│   │   ├── 2_clone_woff2_es.sh
-│   │   └── 3_wasm_compile_es.sh # Compilar el módulo WebAssembly
 │   ├── 1_install_emsdk.sh
 │   ├── 2_clone_woff2.sh
 │   └── 3_wasm_compile.sh        # Compile WebAssembly module
@@ -146,7 +142,7 @@ em++ -Os \
 ## Usage
 
 ### Web Interface
-1. Open `mrkWoff2.html` in a web browser
+1. Open [mrkWoff2.html](https://marco-arias-antolin.github.io/mrkWoff2/web/mrkWoff2.html) in a web browser
 
    NOTE: Requires a local web server due to CORS restrictions
 
@@ -157,7 +153,7 @@ em++ -Os \
    
    Then navigate to: http://localhost:8000/mrkWoff2.html
 
-   Servidores en windows:
+   Windows:
    - [laragon](https://laragon.org/download)
    - [XAMPP](https://www.apachefriends.org/download.html)
 
@@ -207,23 +203,13 @@ This project is dual-licensed under:
 The **[WOFF2](https://github.com/google/woff2)** library is licensed under the MIT License.  
 **[Emscripten](https://github.com/emscripten-core/emsdk)** is available under 2 licenses, the MIT license and the University of Illinois/NCSA Open Source License
 
-## Contributing
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ## Acknowledgments
 - Google [WOFF2](https://github.com/google/woff2) team for the excellent compression library
 - [Emscripten](https://github.com/emscripten-core/emsdk) team for making C++ to WebAssembly compilation possible
 - [WebAssembly community](https://www.w3.org/community/webassembly/) for continuous improvements
 
-## Support
-For issues and questions, please open an issue on the GitHub repository.
-
 ---
 ### ⚠️ **LEGAL NOTICE** ⚠️
-This project is intended for legal font conversion only.  
-Ensure you have appropriate rights and licenses to convert and use any fonts processed with this tool.  
+This project is intended for legal font conversion.  
+Ensure you have appropriate rights and licenses to convert and use any fonts.  
 The authors are not responsible for Copyright infringement.
