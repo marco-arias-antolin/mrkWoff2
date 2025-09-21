@@ -1,19 +1,12 @@
-:root {
-	--primary-btn-color: #fff;
-	--primary-btn-bg: #0d6efd;
-	--primary-btn-hover-bg: #0b5ed7;
-
-	--success-btn-color: #fff;
-	--success-btn-bg: #198754;
-	--success-btn-hover-bg: #157347;
-
-	--info-btn-color: #000;
-	--info-btn-bg: #0dcaf0;
-	--info-btn-hover-bg: #31d2f2;
-}
-
 #readMoreInput {
 	display: none;
+}
+
+label[for="readMoreInput"] {
+	position: absolute;
+	right: .6rem;
+	top: .6rem;
+	width: 1.8rem;
 }
 
 #readMoreDiv {
@@ -51,53 +44,6 @@ figure>pre {
 	margin: 0;
 }
 
-input[type="file"] {
-	border: 2px solid var(--color);
-	border-radius: .6rem;
-	padding: .6rem;
-}
-
-label,
-input[type="file"]::file-selector-button,
-button {
-	background: var(--color);
-	border: none;
-	border-radius: .6rem;
-	color: var(--bg);
-	cursor: pointer;
-	margin: .6rem;
-	padding: .6rem;
-}
-
-*:disabled {
-	cursor: not-allowed;
-	opacity: 0.66;
-}
-
-.primary {
-	background: var(--primary-btn-bg);
-	color: var(--primary-btn-color);
-}
-
-.primary:hover {
-	background: var(--primary-btn-hover-bg);
-}
-
-.success {
-	background: var(--success-btn-bg);
-	color: var(--success-btn-color);
-}
-
-.success:hover {
-	background: var(--success-btn-hover-bg);
-}
-
-
-.info {
-	background: var(--info-btn-bg);
-	color: var(--info-btn-color);
-}
-
-.info:hover {
-	background: var(--info-btn-hover-bg);
+input[type="file"]::file-selector-button {
+	display: none;
 }

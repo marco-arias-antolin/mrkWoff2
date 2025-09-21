@@ -12,6 +12,25 @@ html {
 	min-height: 100vh;
 }
 
+*:disabled {
+	cursor: not-allowed;
+	filter: grayscale(0.66);
+	opacity: 0.66;
+	pointer-events: none;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
 body {
 	background: var(--bg);
 	box-sizing: border-box;
@@ -64,8 +83,7 @@ h5,
 h6 {
 	font-weight: 500;
 	line-height: 1.2;
-	margin: 0;
-	margin-top: .6rem;
+	margin: .6rem;
 	text-align: center;
 }
 
@@ -110,11 +128,6 @@ img {
 	max-width: 100%;
 }
 
-iframe {
-	border-radius: .6rem;
-	width: 100%;
-}
-
 footer {
 	background: var(--bg);
 	inset: auto 0 0;
@@ -122,8 +135,8 @@ footer {
 	padding-bottom: .6rem;
 	position: fixed;
 	text-align: center;
-	animation: footerAnimation .6s ease-in 6 alternate;
-	transition: transform 0.6s;
+	animation: footerAnimation .6s 6 alternate;
+	transition: transform .6s;
 	will-change: transform;
 }
 

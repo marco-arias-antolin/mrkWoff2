@@ -194,10 +194,9 @@ This project requires a modern browser with WebAssembly support:
 - Safari 11+
 - Edge 16+
 
-## Licenses
-This project is dual-licensed under:
+## License
+This project is licensed under:
 - **GNU General Public License v3.0** - See [gpl.txt](gpl-3.0.txt)
-- **GNU Affero General Public License v3.0** - See [agpl.txt](agpl-3.0.txt)
 
 ### Third-party Licenses
 The **[WOFF2](https://github.com/google/woff2)** library is licensed under the MIT License.  
