@@ -1,6 +1,6 @@
 # [Woff2-Wasm](https://marco-arias-antolin.github.io/Woff2-Wasm/web/Woff2-Wasm.html)
 
-TTF ↔ WOFF2 compression/decompression in your browser using WebAssembly.  
+WOFF2 ↔ TTF compression/decompression in your browser using WebAssembly.  
 All processing happens locally.
 
 **Built with**:

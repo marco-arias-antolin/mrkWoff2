@@ -21,7 +21,7 @@ label[for="readMoreInput"] {
 	transform: scale(0);
 	transition: .6s;
 	will-change: transform, border-radius;
-	z-index: 1;
+	z-index: var(--z-index-menu);
 }
 
 #readMoreInput:checked~#readMoreDiv {

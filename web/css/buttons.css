@@ -17,32 +17,6 @@
 	--color-info: var(--black);
 	--color-light: var(--black);
 	--color-dark: var(--white);
-	/* b: brightness */
-	--b-hover: 1.2;
-	--b-active: 1.6;
-	/* bs: box-shadow */
-	--bs-hover: 0 0 .6rem .3rem;
-	--bs-active: 0 0 .6rem .3rem;
-	--bs-focus: 0 0 .06rem .3rem;
-	/* t: transparency */
-	--bst-hover: 66%;
-	--bst-active: 6%;
-	--bst-focus: 33%;
-}
-
-button,
-.btn {
-	background: var(--color);
-	border-radius: .6rem;
-	border: none;
-	color: var(--bg);
-	cursor: pointer;
-	margin: .6rem;
-	padding: .6rem 1.2rem;
-	text-align: center;
-	transition: .2s;
-	vertical-align: middle;
-	--bs-color: var(--color);
 }
 
 .primary {
@@ -91,24 +65,4 @@ button,
 	background: var(--bg-dark);
 	color: var(--color-dark);
 	--bs-color: var(--bg-dark);
-}
-
-button:hover:not(:disabled),
-.btn:hover:not(:disabled) {
-	filter: brightness(var(--b-hover));
-	transform: translateY(-2px);
-	box-shadow: var(--bs-hover) color-mix(in srgb, var(--bs-color), transparent var(--bst-hover));
-}
-
-button:focus:not(:disabled),
-.btn:focus:not(:disabled) {
-	outline: none;
-	box-shadow: var(--bs-focus) color-mix(in srgb, var(--bs-color), transparent var(--bst-focus));
-}
-
-button:active:not(:disabled),
-.btn:active:not(:disabled) {
-	filter: brightness(var(--b-active));
-	transform: translateY(0);
-	box-shadow: var(--bs-active) color-mix(in srgb, var(--bs-color), transparent var(--bst-active));
 }
