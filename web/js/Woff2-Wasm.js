@@ -1,4 +1,4 @@
-import createWoff2Module from './mrkWoff2_ems.js';
+import createWoff2Module from './Woff2-Wasm_ems.js';
 
 const ModulePromise = createWoff2Module();
 

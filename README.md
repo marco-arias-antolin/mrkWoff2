@@ -1,4 +1,4 @@
-# [mrkWoff2](https://marco-arias-antolin.github.io/mrkWoff2/web/mrkWoff2.html)
+# [Woff2-Wasm](https://marco-arias-antolin.github.io/Woff2-Wasm/web/Woff2-Wasm.html)
 
 TTF ↔ WOFF2 compression/decompression in your browser using WebAssembly.  
 All processing happens locally.
@@ -31,24 +31,24 @@ All processing happens locally.
 ## Project Structure
 
 ```
-mrkWoff2/
+Woff2-Wasm/
 ├── cpp/
-│   └── mrk_woff2.cpp            # Core C++ module with WOFF2 operations
+│   └── Woff2_Wasm.cpp            # Core C++ module with WOFF2 operations
 ├── sh/
 │   ├── 1_install_emsdk.sh
 │   ├── 2_clone_woff2.sh
 │   └── 3_wasm_compile.sh        # Compile WebAssembly module
 ├── web/
 │   ├── css/                     # Styles
-│   │   ├── mrkWoff2.css         # JavaScript wrapper for WASM module
+│   │   ├── Woff2-Wasm.css         # JavaScript wrapper for WASM module
 │   │   └── style.css            # Emscripten-generated JavaScript
 │   ├── js/
-│   │   ├── mrkWoff2.js          # JavaScript wrapper for WASM module
-│   │   ├── mrkWoff2_ems.js      # Emscripten-generated JavaScript
-│   │   ├── mrkWoff2_ems.wasm    # Compiled WebAssembly module
+│   │   ├── Woff2-Wasm.js          # JavaScript wrapper for WASM module
+│   │   ├── Woff2-Wasm_ems.js      # Emscripten-generated JavaScript
+│   │   ├── Woff2-Wasm_ems.wasm    # Compiled WebAssembly module
 │   │   └── util/
 │   │       └── download.js      # File download utility
-│   └── mrkWoff2.html
+│   └── Woff2-Wasm.html
 ├── agpl.txt                     # GNU Affero General Public License
 ├── gpl.txt                      # GNU General Public License
 └── README.md                    # This file
@@ -56,7 +56,7 @@ mrkWoff2/
 
 ## Core Functions
 
-The C++ module (`mrk_woff2.cpp`) exports three main functions:
+The C++ module (`Woff2_Wasm.cpp`) exports three main functions:
 - `compress_woff2`: Converts TTF font data to WOFF2 format
 - `decompress_woff2`: Converts WOFF2 font data back to TTF format  
 - `info_woff2`: Extracts metadata information from WOFF2 files
@@ -69,7 +69,7 @@ The C++ module (`mrk_woff2.cpp`) exports three main functions:
 Run the provided build script:
 
 ```bash
-cd "$HOME/mrkWoff2/sh" # Update path if different
+cd "$HOME/Woff2-Wasm/sh" # Update path if different
 chmod +x *.sh
 ./1_install_emsdk.sh
 source "$HOME/emsdk/emsdk_env.sh"
@@ -117,7 +117,7 @@ cp "$FILE_TRANSFORM" "$FILE_TRANSFORM.old" &&
 sed -i 's/static const char kPrefixSuffix\[217\] =/static const char kPrefixSuffix[218] =/' "$FILE_TRANSFORM"
 
 SRC_FILES=$(find "$INSTALL_DIR/src" -name "*.cc" | grep -v -E 'convert_woff2ttf_fuzzer|convert_woff2ttf_fuzzer_new_entry|woff2_compress|woff2_decompress|woff2_info' | tr '\n' ' ')
-CPP_FILE=$HOME/mrkWoff2/cpp/mrk_woff2.cpp
+CPP_FILE=$HOME/Woff2-Wasm/cpp/Woff2_Wasm.cpp
 
 # Compilation
 em++ -Os \
@@ -136,13 +136,13 @@ em++ -Os \
   -g0 \
   -s EXPORTED_FUNCTIONS='["_malloc","_free","_compress_woff2","_decompress_woff2","_info_woff2"]' \
   -s EXPORTED_RUNTIME_METHODS='["getValue","UTF8ToString","cwrap","HEAPU8","HEAPU32"]' \
-  -o mrkWoff2_ems.js
+  -o Woff2-Wasm_ems.js
 ```
 
 ## Usage
 
 ### Web Interface
-1. Open [mrkWoff2.html](https://marco-arias-antolin.github.io/mrkWoff2/web/mrkWoff2.html) in a web browser
+1. Open [Woff2-Wasm.html](https://marco-arias-antolin.github.io/Woff2-Wasm/web/Woff2-Wasm.html) in a web browser
 
    NOTE: Requires a local web server due to CORS restrictions
 
@@ -151,7 +151,7 @@ em++ -Os \
    - ``npx serve``
    - ``php -S localhost:8000``
    
-   Then navigate to: http://localhost:8000/mrkWoff2.html
+   Then navigate to: http://localhost:8000/Woff2-Wasm.html
 
    Windows:
    - [laragon](https://laragon.org/download)
@@ -164,7 +164,7 @@ em++ -Os \
 ### Programmatic Usage
 ```javascript
 // WOFF2 Functions Usage:
-import { compressWoff2, decompressWoff2, infoWoff2 } from './js/mrkWoff2.js';
+import { compressWoff2, decompressWoff2, infoWoff2 } from './js/Woff2-Wasm.js';
 
 // Compress TTF → WOFF2
 // Input: Uint8Array (TTF font data)

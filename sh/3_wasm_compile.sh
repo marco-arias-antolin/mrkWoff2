@@ -2,7 +2,7 @@
 # WASM compile
 
 INSTALL_DIR="$HOME/woff2"
-SRC_FILE="$HOME/mrkWoff2/cpp/mrk_woff2.cpp"
+SRC_FILE="$HOME/Woff2-Wasm/cpp/Woff2_Wasm.cpp"
 SRC_FILES=$(find "$INSTALL_DIR/src" -name "*.cc" | grep -v -E 'convert_woff2ttf_fuzzer|convert_woff2ttf_fuzzer_new_entry|woff2_compress|woff2_decompress|woff2_info' | tr '\n' ' ')
 INIT_DIR=$(pwd)
 trap 'cd "$INIT_DIR"' EXIT INT TERM
@@ -37,13 +37,13 @@ em++ -Os \
 	-g0 \
 	-s EXPORTED_FUNCTIONS='["_malloc","_free","_compress_woff2","_decompress_woff2","_info_woff2"]' \
 	-s EXPORTED_RUNTIME_METHODS='["getValue","UTF8ToString","cwrap","HEAPU8","HEAPU32"]' \
-	-o mrkWoff2_ems.js
+	-o Woff2-Wasm_ems.js
 
 if [ $? -ne 0 ]; then
 	echo "Compilation error"
 	exit 1
 fi
 echo "Compilation completed successfully"
-ls -la mrkWoff2_ems*
+ls -la Woff2-Wasm_ems*
 
 exit 0

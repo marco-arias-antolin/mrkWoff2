@@ -1,4 +1,4 @@
-import { compressWoff2, decompressWoff2, infoWoff2 } from './mrkWoff2.js';
+import { compressWoff2, decompressWoff2, infoWoff2 } from './Woff2-Wasm.js';
 import { download } from './util/download.js';
 
 const inputFile = document.getElementById('input-file');
